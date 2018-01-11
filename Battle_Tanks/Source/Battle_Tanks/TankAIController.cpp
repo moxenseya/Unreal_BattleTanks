@@ -19,7 +19,7 @@ void ATankAIController::BeginPlay()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Found the controller for Player : %s"), *(ControlledTank->GetName()));
+		//UE_LOG(LogTemp, Warning, TEXT("Found the controller for Player : %s"), *(ControlledTank->GetName()));
 	}
 }
 
