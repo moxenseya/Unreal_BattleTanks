@@ -23,6 +23,8 @@ public:
 	void SetBarrelReference(UTankBarrel* Barreltoset);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTurret* Turrettoset);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Fire();
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
