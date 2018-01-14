@@ -22,10 +22,15 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 	Barrel = BarrelToSet;
 }
 
+void UTankAimingComponent::SetTurretReference(UTurret * TurrettoSet)
+{
+	Turret = TurrettoSet;
+}
+
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return; }
-
+	if (!Turret) { return; }
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity
@@ -40,13 +45,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	if (bHaveAimSolution)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Warning, TEXT("AimSolutuon Found!"));
+		//UE_LOG(LogTemp, Warning, TEXT("AimSolutuon Found!"));
+		MoveTurretTowards(AimDirection);
 		MoveBarrelTowards(AimDirection);
-		
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No Aim Solution Found"));
+		//UE_LOG(LogTemp, Warning, TEXT("No Aim Solution Found"));
 	}
 
 	// If no solution found do nothing
@@ -62,4 +67,22 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 
 	Barrel->Elevate(DeltaRotator.Pitch);
 
+}
+
+void UTankAimingComponent::MoveTurretTowards(FVector AimDirection)
+{
+
+	auto TurretRotator = Turret->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - TurretRotator;
+
+
+	if (FMath::Abs(DeltaRotator.Yaw) < 180)
+	{
+		Turret->RotateTurret(DeltaRotator.Yaw);
+	}
+	else // Avoid going the long-way round
+	{
+		Turret->RotateTurret(-DeltaRotator.Yaw);
+	}
 }
