@@ -10,7 +10,7 @@
 
 class UTankBarrel;
 class UTurret;
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLE_TANKS_API UTankAimingComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -26,7 +26,7 @@ public:
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 private:
-	UTankBarrel* Barrel = nullptr;
+	UTankBarrel * Barrel = nullptr;
 	UTurret* Turret = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
 	void MoveTurretTowards(FVector AimDirection);

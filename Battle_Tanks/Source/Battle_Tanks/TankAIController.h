@@ -8,15 +8,20 @@
 
 class ATank;
 /**
- * 
+ *
  */
 UCLASS()
 class BATTLE_TANKS_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 
-		ATank* GetControlledTank() const;
-	void BeginPlay() override;
-	ATank* GetPlayerTank() const;
+
+		void BeginPlay() override;
+
 	void Tick(float DeltaTime) override;
+
+private:
+
+	ATank *PlayerTank = nullptr;
+	ATank *AITank = nullptr;
 };
