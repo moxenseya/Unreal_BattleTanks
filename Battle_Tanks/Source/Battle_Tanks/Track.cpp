@@ -13,5 +13,5 @@ void UTrack::SetThrottle(float Throttle)
 	auto TankRoot = Cast<UPrimitiveComponent>( GetOwner()->GetRootComponent());
 	TankRoot->AddForceAtLocation(ForceApplied,ForceLocation);
 
-	UE_LOG(LogTemp, Warning, TEXT("Throttling!! %s") ,*ForceApplied.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Throttling!! %s") ,*ForceApplied.ToString());
 }
