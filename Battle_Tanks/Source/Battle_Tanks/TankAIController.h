@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
+
 #include "TankAIController.generated.h"
+
 
 class ATank;
 /**
@@ -14,14 +16,15 @@ UCLASS()
 class BATTLE_TANKS_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
+public:
 
-
-		void BeginPlay() override;
-
+	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
+	
 
 private:
 
-	ATank *PlayerTank = nullptr;
+	ATank * PlayerTank = nullptr;
 	ATank *AITank = nullptr;
+	float AcceptanceRadius = 3000.f;
 };

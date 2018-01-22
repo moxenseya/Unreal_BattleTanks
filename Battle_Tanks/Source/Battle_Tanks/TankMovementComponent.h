@@ -28,6 +28,8 @@ public:
 		void RotateRight(float Throw);
 
 
+	void RequestDirectMove(const FVector& MoveVelocity,bool bForceMaxSpeed) override;
+
 
 
 	UFUNCTION(BlueprintCallable)

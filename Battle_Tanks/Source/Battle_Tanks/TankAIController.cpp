@@ -22,7 +22,7 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (!PlayerTank || !AITank) { return; }
 	
-	
+	MoveToActor(PlayerTank, AcceptanceRadius);
 
 		// TODO Move towards the player
 
