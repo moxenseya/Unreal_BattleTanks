@@ -19,6 +19,17 @@ class BATTLE_TANKS_API UTankMovementComponent : public UNavMovementComponent
 public:
 	UFUNCTION(BlueprintCallable)
 		void IntendMoveForward(float Throw);
+
+	UFUNCTION(BlueprintCallable)
+		void IntendMoveBackward(float Throw);
+	UFUNCTION(BlueprintCallable)
+		void RotateLeft(float Throw);
+	UFUNCTION(BlueprintCallable)
+		void RotateRight(float Throw);
+
+
+
+
 	UFUNCTION(BlueprintCallable)
 		void Initialise(UTrack* LeftTrackToSet, UTrack* RightTrackToSet);
 
