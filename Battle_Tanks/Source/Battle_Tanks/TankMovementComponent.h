@@ -23,9 +23,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void IntendMoveBackward(float Throw);
 	UFUNCTION(BlueprintCallable)
-		void RotateLeft(float Throw);
+		void IntendTurnLeft(float Throw);
 	UFUNCTION(BlueprintCallable)
-		void RotateRight(float Throw);
+		void IntendTurnRight(float Throw);
 
 
 	void RequestDirectMove(const FVector& MoveVelocity,bool bForceMaxSpeed) override;
