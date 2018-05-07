@@ -24,10 +24,6 @@ public:
 	void AimAt(FVector HitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-		void SetBarrelReference(UTankBarrel* Barreltoset);
-	UFUNCTION(BlueprintCallable, Category = Setup)
-		void SetTurretReference(UTurret* Turrettoset);
-	UFUNCTION(BlueprintCallable, Category = Setup)
 		void Fire();
 
 
@@ -46,10 +42,6 @@ protected:
 
 
 public:
-
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 		float LaunchSpeed = 10000.f;

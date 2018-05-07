@@ -32,7 +32,7 @@ public:
 
 
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Setup")
 		void Initialise(UTrack* LeftTrackToSet, UTrack* RightTrackToSet);
 
 
