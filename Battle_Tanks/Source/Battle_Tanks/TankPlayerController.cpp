@@ -16,6 +16,9 @@ void ATankPlayerController::BeginPlay()
 	if (AimingComp)
 	{
 		FoundAimingComponent(AimingComp);
+		//UE_LOG(LogTemp, Warning, TEXT("Aiming Component was FOUND! by tank player controller on Begin Play"))
+
+
 	}
 	else
 	{
@@ -36,7 +39,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	if (!GetControlledTank()) { return; }
+	if (!ensure(GetControlledTank())) { return; }
 
 	FVector HitLocation; // Out parameter
 	if (GetSightRayHitLocation(HitLocation)) // Has "side-effect", is going to line trace

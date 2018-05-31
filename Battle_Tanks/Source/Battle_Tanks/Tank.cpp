@@ -6,7 +6,6 @@
 #include "Engine/World.h"
 #include "Projectile.h"
 #include "TankBarrel.h"
-#include "TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
@@ -21,13 +20,13 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay(); // Required for BP Begin Play!! (If you don't have this line, your BP will not work)
-
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 
 void ATank::AimAt(FVector HitLocation)
 {
-	if (!TankAimingComponent)
+	if (!ensure(TankAimingComponent))
 		return;
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 
@@ -35,7 +34,7 @@ void ATank::AimAt(FVector HitLocation)
 
 void ATank::Fire()
 {
-	if (!Barrel) { return; }
+	if (!ensure(Barrel)) { return; }
 
 	 isReloaded = (FPlatformTime::Seconds()- LastFireTime) > ReloadTimeInSeconds;
 
