@@ -20,25 +20,3 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay(); // Required for BP Begin Play!! (If you don't have this line, your BP will not work)
 }
-
-
-
-
-void ATank::Fire()
-{
-	if (!ensure(Barrel)) { return; }
-
-	 isReloaded = (FPlatformTime::Seconds()- LastFireTime) > ReloadTimeInSeconds;
-
-
-	if (isReloaded)
-	{
-		auto projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("FireSpawn")), Barrel->GetSocketRotation(FName("FireSpawn")));
-		projectile->Launchprojectile(LaunchSpeed);
-		LastFireTime = FPlatformTime::Seconds();
-	}
-	
-
-	
-	
-}
