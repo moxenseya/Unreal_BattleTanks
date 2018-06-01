@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "AIController.h"
-
+#include "TankAimingComponent.h"
 #include "TankAIController.generated.h"
 
-
-class ATank;
+class UTankAimingComponent;
 /**
  *
  */
@@ -23,8 +22,7 @@ public:
 	
 
 private:
-
-	ATank * PlayerTank = nullptr;
-	ATank *AITank = nullptr;
 	float AcceptanceRadius = 3000.f;
+	
+
 };

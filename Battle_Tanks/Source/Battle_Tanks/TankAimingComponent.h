@@ -32,6 +32,8 @@ public:
 	// TODO add SetTurretReference
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
+
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void Initialise(UTankBarrel* BarrelToSet, UTurret* TurretToSet);
 
@@ -45,4 +47,8 @@ private:
 	UTurret* Turret = nullptr;
 	void MoveBarrelTowards(FVector AimDirection);
 	void MoveTurretTowards(FVector AimDirection);
+
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 10000.f;
 };
