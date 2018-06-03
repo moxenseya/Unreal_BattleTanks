@@ -66,8 +66,8 @@ private:
 	void MoveTurretTowards(FVector AimDirection);
 
 
-
-
+	FVector AimDirection;
+	bool BarrelMoving();
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 	virtual void BeginPlay() override;
 
