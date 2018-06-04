@@ -24,7 +24,7 @@ void ATankAIController::Tick(float DeltaTime)
 	if (!ensure(AimingComp)) { return; }
 
 
-	//MoveToActor(PlayerTank, AcceptanceRadius);
+	MoveToActor(PlayerTank, AcceptanceRadius);
 
 	AimingComp->AimAt(PlayerTank->GetActorLocation());
 
