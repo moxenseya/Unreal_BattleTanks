@@ -7,7 +7,10 @@ UTrack::UTrack()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 }
-
+void UTrack::BeginPlay()
+{
+	OnComponentHit.AddDynamic(this, &UTrack::OnHit);
+}
 void UTrack::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	auto SidewaysVector = GetRightVector();
@@ -32,4 +35,10 @@ void UTrack::SetThrottle(float Throttle)
 	TankRoot->AddForceAtLocation(ForceApplied,ForceLocation);
 
 	UE_LOG(LogTemp, Warning, TEXT("Throttling!! %s") ,*ForceApplied.ToString());
+}
+
+void UTrack::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+
+	UE_LOG(LogTemp, Warning, TEXT("I'm HIT I'm HIT!!"));
 }
