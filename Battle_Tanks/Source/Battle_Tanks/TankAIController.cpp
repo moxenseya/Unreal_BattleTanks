@@ -5,30 +5,49 @@
 #include "TankAimingComponent.h"
 
 void ATankAIController::BeginPlay()
+
 {
+
 	Super::BeginPlay();
-	
+
 }
 
+
+
 // Called every frame
+
 void ATankAIController::Tick(float DeltaTime)
+
 {
+
 	Super::Tick(DeltaTime);
 
 
-	auto PlayerTank = (GetWorld()->GetFirstPlayerController()->GetPawn());
-	auto AITank = (GetPawn());
-	auto *AimingComp = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 
-	if (!ensure(PlayerTank && AITank)) { return; }
-	if (!ensure(AimingComp)) { return; }
+	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
+
+	auto ControlledTank = GetPawn();
 
 
-	MoveToActor(PlayerTank, AcceptanceRadius);
 
-	AimingComp->AimAt(PlayerTank->GetActorLocation());
+	if (!ensure(PlayerTank && ControlledTank)) { return; }
 
-		// Fire if ready
-		AimingComp->Fire();
-	
+
+
+	// Move towards the player
+
+	MoveToActor(PlayerTank, AcceptanceRadius); // TODO check radius is in cm
+
+
+
+											   // Aim towards the player
+
+	auto AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
+
+	AimingComponent->AimAt(PlayerTank->GetActorLocation());
+
+
+
+	AimingComponent->Fire(); // TODO limit firing rate
+
 }
