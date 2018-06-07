@@ -20,9 +20,9 @@ public:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 	
-
-private:
-	float AcceptanceRadius = 3000.f;
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float AcceptanceRadius = 80000.f;
 	
 
 };

@@ -63,7 +63,7 @@ public:
 
 		void Fire();
 
-
+	FiringState GetFiringState() const;
 
 protected:
 

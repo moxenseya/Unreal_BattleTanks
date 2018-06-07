@@ -16,7 +16,7 @@ UTankAimingComponent::UTankAimingComponent()
 
 	// off to improve performance if you don't need them.
 
-	bWantsBeginPlay = true;
+	//bWantsBeginPlay = true;
 
 	PrimaryComponentTick.bCanEverTick = true;
 
@@ -222,4 +222,10 @@ void UTankAimingComponent::Fire()
 
 	}
 
+}
+
+
+FiringState UTankAimingComponent::GetFiringState() const
+{
+	return FiringState;
 }

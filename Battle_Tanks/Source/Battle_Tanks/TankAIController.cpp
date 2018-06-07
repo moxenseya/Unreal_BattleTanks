@@ -23,7 +23,6 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 
-
 	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
 
 	auto ControlledTank = GetPawn();
@@ -38,6 +37,7 @@ void ATankAIController::Tick(float DeltaTime)
 
 	MoveToActor(PlayerTank, AcceptanceRadius); // TODO check radius is in cm
 
+	UE_LOG(LogTemp, Warning, TEXT("AI Ticking, wanna go to %s!"), *PlayerTank->GetActorLocation().ToString());
 
 
 											   // Aim towards the player
@@ -47,7 +47,7 @@ void ATankAIController::Tick(float DeltaTime)
 	AimingComponent->AimAt(PlayerTank->GetActorLocation());
 
 
-
+	if(AimingComponent->GetFiringState() == FiringState::Locked)
 	AimingComponent->Fire(); // TODO limit firing rate
 
 }
