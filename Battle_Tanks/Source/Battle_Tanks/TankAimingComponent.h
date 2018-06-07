@@ -19,7 +19,9 @@ enum class FiringState : uint8
 
 	Aiming,
 
-	Locked
+	Locked,
+
+	Empty
 
 };
 
@@ -57,6 +59,10 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+		int rounds = 3;
+
+		UFUNCTION(BlueprintCallable, Category = "Firing")
+			int getrounds();
 
 
 	UFUNCTION(BlueprintCallable, Category = "Firing")

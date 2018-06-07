@@ -51,8 +51,12 @@ void UTankAimingComponent::Initialise(UTankBarrel* BarrelToSet, UTurret* TurretT
 void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 
 {
+	if (rounds <= 0)
+	{
+		FiringState = FiringState::Empty;
 
-	if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
+	}
+	else if ((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
 
 	{
 
@@ -146,6 +150,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 
 }
 
+int UTankAimingComponent::getrounds()
+{
+	return rounds;
+}
+
 
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
@@ -194,7 +203,7 @@ void UTankAimingComponent::Fire()
 
 {
 
-	if (FiringState != FiringState::Reloading)
+	if (FiringState == FiringState::Locked || FiringState == FiringState::Aiming)
 
 	{
 
@@ -214,11 +223,14 @@ void UTankAimingComponent::Fire()
 
 			);
 
+		rounds = rounds - 1;
+		if (rounds <= 0)
+		FiringState = FiringState::Empty;
+		UE_LOG(LogTemp, Warning, TEXT("Ammo Left: %i"), rounds);
 
 
 		Projectile->Launchprojectile(LaunchSpeed);
-
-		LastFireTime = FPlatformTime::Seconds();
+				LastFireTime = FPlatformTime::Seconds();
 
 	}
 

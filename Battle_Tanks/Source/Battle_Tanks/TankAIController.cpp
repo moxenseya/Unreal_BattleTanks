@@ -37,7 +37,6 @@ void ATankAIController::Tick(float DeltaTime)
 
 	MoveToActor(PlayerTank, AcceptanceRadius); // TODO check radius is in cm
 
-	UE_LOG(LogTemp, Warning, TEXT("AI Ticking, wanna go to %s!"), *PlayerTank->GetActorLocation().ToString());
 
 
 											   // Aim towards the player
