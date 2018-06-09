@@ -58,8 +58,8 @@ public:
 
 
 	void AimAt(FVector HitLocation);
-
-		int rounds = 3;
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		int32 rounds = 3;
 
 		UFUNCTION(BlueprintCallable, Category = "Firing")
 			int getrounds();
