@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Projectile.h"
+#include "Engine/World.h"
+#include "Runtime/Engine/Public/TimerManager.h "
 #include "TankProjectileMovementComponent.h"
 
 // Sets default values
@@ -60,4 +62,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	ImpactBlast->Activate();
 	ExplosionForce->Activate();
 	ExplosionForce->FireImpulse();
+	SetRootComponent(ImpactBlast);
+	CollisionMesh->DestroyComponent();
+	FTimerHandle FtimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(FtimerHandle,this,&AProjectile::DestroyProjectile,destroydelay,false);
+}
+
+void AProjectile::DestroyProjectile()
+{
+	Destroy();
 }

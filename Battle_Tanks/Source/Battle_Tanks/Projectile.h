@@ -45,4 +45,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Behavior")
 	void OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
+
+	void DestroyProjectile();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		float destroydelay = 10.f;
 };
