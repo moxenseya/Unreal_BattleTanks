@@ -3,6 +3,7 @@
 #include "Projectile.h"
 #include "Engine/World.h"
 #include "Runtime/Engine/Public/TimerManager.h "
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h "
 #include "TankProjectileMovementComponent.h"
 
 // Sets default values
@@ -64,6 +65,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	ExplosionForce->FireImpulse();
 	SetRootComponent(ImpactBlast);
 	CollisionMesh->DestroyComponent();
+	UGameplayStatics::ApplyRadialDamage(this, ProjectileDamage, GetActorLocation(), ExplosionForce->Radius, UDamageType::StaticClass(), TArray<AActor*>());
 	FTimerHandle FtimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(FtimerHandle,this,&AProjectile::DestroyProjectile,destroydelay,false);
 }

@@ -50,4 +50,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float destroydelay = 10.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+		float ProjectileDamage = 10.f;
 };
