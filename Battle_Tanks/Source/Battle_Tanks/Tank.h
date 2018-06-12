@@ -15,6 +15,10 @@ class BATTLE_TANKS_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ATank(); 
+	UFUNCTION(BlueprintPure, Category = "Setup")
+	float GetHealthPercent() const;
+
+
 	virtual float TakeDamage(float DamageAmount,
 		struct FDamageEvent const & DamageEvent,
 		AController * EventInstigator,
