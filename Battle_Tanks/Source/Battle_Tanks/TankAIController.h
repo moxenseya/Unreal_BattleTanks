@@ -7,6 +7,8 @@
 #include "TankAimingComponent.h"
 #include "TankAIController.generated.h"
 
+
+
 class UTankAimingComponent;
 /**
  *
@@ -19,10 +21,12 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
+	virtual void SetPawn(APawn *InPawn) override;
 	
+	UFUNCTION()
+	void OnPossessedTankDeath();
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		float AcceptanceRadius = 80000.f;
 	
-
 };

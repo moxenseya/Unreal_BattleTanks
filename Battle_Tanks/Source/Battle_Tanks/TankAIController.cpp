@@ -2,6 +2,7 @@
 #pragma once
 #include "TankAIController.h"
 #include "Engine/World.h"
+#include "Tank.h"
 #include "TankAimingComponent.h"
 
 void ATankAIController::BeginPlay()
@@ -49,4 +50,26 @@ void ATankAIController::Tick(float DeltaTime)
 	if(AimingComponent->GetFiringState() == FiringState::Locked)
 	AimingComponent->Fire(); // TODO limit firing rate
 
+}
+
+void ATankAIController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+	if (InPawn)
+	{
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank))
+		{
+			return;
+		}
+		PossessedTank->OnDeath.AddUniqueDynamic(this, & ATankAIController::OnPossessedTankDeath);
+
+		//TODO subscribe our local method to tank's death event
+	}
+	
+}
+
+void ATankAIController::OnPossessedTankDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Tank has died through the broadcast message"));
 }

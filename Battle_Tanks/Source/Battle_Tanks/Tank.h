@@ -6,6 +6,7 @@
 
 #include "Tank.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTankDelegate);
 
 UCLASS()
 class BATTLE_TANKS_API ATank : public APawn
@@ -23,6 +24,10 @@ public:
 		struct FDamageEvent const & DamageEvent,
 		AController * EventInstigator,
 		AActor * DamageCauser) override;
+
+
+
+	FTankDelegate OnDeath;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
