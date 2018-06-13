@@ -37,6 +37,6 @@ private:
 	int32 MaxHealth = 100;
 
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
-		int32 CurrentHealth= MaxHealth;
+		int32 CurrentHealth;
 
 		};

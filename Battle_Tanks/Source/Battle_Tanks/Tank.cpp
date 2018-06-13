@@ -19,6 +19,7 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay(); // Required for BP Begin Play!! (If you don't have this line, your BP will not work)
+	CurrentHealth = MaxHealth;
 }
 
 float ATank::TakeDamage(float DamageAmount,	struct FDamageEvent const & DamageEvent,AController * EventInstigator,AActor * DamageCauser)
